@@ -7,9 +7,8 @@ const getAllBlogs = async (req, res) => {
         res.json(blogs);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-};
+        res.status(500).json({ message: "Internal server error" }); status: false };
+    };
 
 // Get a single blog by ID
 const getBlogById = async (req, res) => {
@@ -28,11 +27,18 @@ const getBlogById = async (req, res) => {
 // Create a new blog
 const createBlog = async (req, res) => {
     try {
-        const newBlog = await Blog.create(req.body);
-        res.status(201).json(newBlog);
+        const data = {
+            title: req.body.title, 
+            imgURL:req.body.imgUrl, 
+            content: req.body.content
+            
+        };
+
+        const newBlog = await Blog.create(data);
+        res.status(200).send({msg:"Blog created successfully", status:true, newBlog});
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Internal server error", status: false });
     }
 };
 

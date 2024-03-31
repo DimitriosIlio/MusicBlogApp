@@ -12,8 +12,8 @@ app.use(express.json());
 app.use(cors());
 
 // Import the userRoutes
-const userRoutes = require("./routers/userRoutes");
-app.use("/user", userRoutes);
+app.use("/user", require("./routers/userRouters"));
+app.use("blogs", require("./routers/blogRouters"));
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
