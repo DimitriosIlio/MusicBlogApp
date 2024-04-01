@@ -14,6 +14,7 @@ const register = async (req, res) => {
                 msg: "User already exists, please login or register with a new email",
             });
         }
+
         let hashPassword = await bcrypt.hash(password, +process.env.SALT_ROUND);
         await User.create({ username, email, password: hashPassword });
         return res.send({ msg: "Registered successfully" });
@@ -22,6 +23,18 @@ const register = async (req, res) => {
         return res.send({ msg: "Internal server error, cannot register" });
     }
 };
+
+ let token = jwt.sign(
+    { email: user.email, id:user._id };
+    process.env.SECRET_KEY
+ );
+ res.send({ msg: "Login successfully", token });
+ } catch (error) {
+    console.log(error);
+    res.send({ msg: "Internal server error"});
+ }
+};
+
 
 const login = async (req, res) => {
     try {

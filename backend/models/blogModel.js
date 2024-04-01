@@ -1,20 +1,16 @@
-const express = require("express");
-const router = express.Router();
+const mongoose = require("mongoose");
+const blogSchema = new mongoose.Schema(
+ {  
+     title: String,
+     content: String,
+     imgUrl: String,
+     author: { type: mongoose.Schema.Types.ObjectId, ref: "User" };
 
-const {
-     getAllBlogs, 
-     createNewBlog,
-     deleteBlog,
-     updateBlog,
-     } = require("../controllers/blogController");
+ },
+ { timestamps: true }
+);
 
+//Model
+const Blog = mongoose.model("Blog", blogSchema);
 
-    
-     router.post("/create", createNewBlog);
-     router.get("/getAllBlogs");
-     router.put("/:id",updateBlog);
-     router.delete("/:id", deleteBlog);
-
-
-
-module.exports = router;
+module.exports = Blog;

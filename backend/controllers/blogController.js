@@ -3,7 +3,7 @@ const Blog = require("../models/blogModel");
 // Get all blogs
 const getAllBlogs = async (req, res) => {
     try {
-        const blogs = await Blog.find();
+        const blogs = await Blog.find().populate("author");
         res.json(blogs);
     } catch (error) {
         console.error(error);
@@ -27,11 +27,12 @@ const getBlogById = async (req, res) => {
 // Create a new blog
 const createBlog = async (req, res) => {
     try {
+        console.log(req.user);
         const data = {
             title: req.body.title, 
             imgURL:req.body.imgUrl, 
             content: req.body.content
-            
+            author: req.user.id,
         };
 
         const newBlog = await Blog.create(data);
@@ -45,30 +46,30 @@ const createBlog = async (req, res) => {
 // Update an existing blog by ID
 const updateBlog = async (req, res) => {
     try {
-        const updatedBlog = await Blog.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!updatedBlog) {
-            return res.status(404).json({ message: "Blog not found" });
-        }
-        res.json(updatedBlog);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Internal server error" });
-    }
+     const { id } = req.params;
+     const data = req.body;
+     let updated = await Blog.updateOne({_id:id}, data);
+     res.status(200).send({ msg: "updated successfully", status: true, updated  });
+     catch (error) {
+        res.status(500).send({ msg: "Internal server error", status: false });
+
+     } 
+
 };
 
 // Delete a blog by ID
 const deleteBlog = async (req, res) => {
     try {
-        const deletedBlog = await Blog.findByIdAndDelete(req.params.id);
-        if (!deletedBlog) {
-            return res.status(404).json({ message: "Blog not found" });
-        }
-        res.json({ message: "Blog deleted successfully" });
+        const { id } = req.params;
+        await Blog.deleteOne({ _id: id });
+        res.status(200).send({ msg: "deleted successfully", status:true })
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).send({ msg: "Internal server error", status: false });
+
     }
 };
+  
+
 
 module.exports = {
     getAllBlogs,
