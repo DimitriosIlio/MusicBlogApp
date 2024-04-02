@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./form.css";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
+import { jwtDecode }  from "jwt-decode";
+
+
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -12,11 +14,11 @@ function Login() {
         event.preventDefault();
         try {
             let user = { email, password };
-            let res = await axios.post("http://localhost:8000/login", user);
+            let res = await axios.post("http://localhost:8000/user/login", user);
             alert(res.data.token);
             token = res.data.token;
-            const decoded = jwtDecode(token);
-            console.log(decoded);
+            localStorage.setItem("token", token);
+           
         } catch (error) {
             console.error(error);
         }

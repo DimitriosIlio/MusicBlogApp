@@ -1,4 +1,6 @@
-/* Form Styles */
+
+
+/* Styles for the form container */
 .form-container {
   max-width: 400px;
   margin: 0 auto;
@@ -8,16 +10,19 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Styles for form groups */
 .form-group {
   margin-bottom: 20px;
 }
 
+/* Styles for form labels */
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
+/* Styles for form inputs (text, password, email) and textarea */
 .form-group input[type="text"],
 .form-group input[type="password"],
 .form-group input[type="email"],
@@ -28,10 +33,12 @@
   border-radius: 5px;
 }
 
+/* Styles for textarea resizing */
 .form-group textarea {
   resize: vertical;
 }
 
+/* Styles for form buttons */
 .form-group button {
   width: 100%;
   padding: 10px;
@@ -42,6 +49,7 @@
   cursor: pointer;
 }
 
+/* Hover styles for form buttons */
 .form-group button:hover {
   background-color: #555;
 }

@@ -1,20 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
 import "./navbar.css";
+import { jwtDecode } from "jwt-decode";
+
 
 function Navbar() {
+    let token ;
+    let decoded; 
+    if (localStorage.getItem("token")) {
+        token = localStorage.getItem("token");
+        decoded = jwtDecode(token);
+            console.log(decoded);
+    } else {
+        return;
+    }
     return (
-        <div>
-            <div className=".navbar"> </div>
-            <div className="logo"> {/* Place className inside curly braces */}
+        <div className="navbar"> {/* Remove the dot from className */}
+            <div className="logo"> {/* Remove the dot from className */}
                 <h1>MusicBlogApp</h1>
             </div>
-            <div className="links"> {/* Place className inside curly braces */}
-                <Link to="/Blogs">Login</Link> {/* Use to instead of href */}
+            <div className="links"> {/* Remove the dot from className */}
+                <Link to="/Blogs">Blogs</Link> {/* Use to instead of href */}
                 <Link to="/new">Post New Blog</Link> {/* Use to instead of href */}
                 <Link to="/login">Login</Link> {/* Use to instead of href */}
-                <Link to="/register">SignUp</Link> {/* Use to instead of href */}
-            </div> {/* Add closing tag */}
+                <Link to="/register">Sign Up</Link> {/* Use to instead of href */}
+            </div> {/* Close the div */}
         </div>
     );
 }
