@@ -1,30 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
 import "./navbar.css";
-import { jwtDecode } from "jwt-decode";
-
+import {  jwtDecode } from "jwt-decode"; // Correct import statement for jwtDecode
 
 function Navbar() {
-    let token ;
+    let token = localStorage.getItem("token");
     let decoded; 
-    if (localStorage.getItem("token")) {
-        token = localStorage.getItem("token");
+
+    if (token) {
         decoded = jwtDecode(token);
-            console.log(decoded);
+        console.log(decoded);
     } else {
-        return;
+        token = null;
     }
+
     return (
-        <div className="navbar"> {/* Remove the dot from className */}
-            <div className="logo"> {/* Remove the dot from className */}
+        <div className="navbar"> {/* Remove dot from className */}
+            <div className="logo"> {/* Remove dot from className */}
                 <h1>MusicBlogApp</h1>
             </div>
-            <div className="links"> {/* Remove the dot from className */}
-                <Link to="/Blogs">Blogs</Link> {/* Use to instead of href */}
-                <Link to="/new">Post New Blog</Link> {/* Use to instead of href */}
-                <Link to="/login">Login</Link> {/* Use to instead of href */}
-                <Link to="/register">Sign Up</Link> {/* Use to instead of href */}
-            </div> {/* Close the div */}
+            <div className="links"> {/* Remove dot from className */}
+                {token ? ( // Use ternary operator for conditional rendering
+                    <>
+                        <Link to="/new">Post New Blog</Link>
+                        <Link to="/blogs">Blogs</Link> {/* Correct path to "Blogs" */}
+                        <Link to="/logout">Logout</Link> {/* Correct path to "Logout" */}
+                    </>
+                ) : (
+                    <>
+                        <Link to="/login">Login</Link> 
+                        <Link to="/register">Sign Up</Link> 
+                    </>
+                )}
+            </div> 
         </div>
     );
 }
