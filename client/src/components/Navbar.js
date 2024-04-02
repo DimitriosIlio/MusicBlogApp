@@ -39,9 +39,11 @@ function Navbar() {
                     </>
                 ) : (
                     <>
-                        <Link to="/">Blogs</Link>
+                        <Link to="/">Music Blogs</Link>
                         <Link to="/login">Login</Link> 
                         <Link to="/signup">Sign Up</Link> 
+                        <Link to="/logout">Log Out</Link> 
+
                     </>
                 )}
             </div> 
