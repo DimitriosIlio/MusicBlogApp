@@ -27,28 +27,35 @@ function Navbar() {
 
     return (
         <div className="navbar">
-            <div className="logo">
-                <h1>Music Blog App</h1>
-            </div>
-            <div className="links">
-                {token ? (
-                    <>
-                        <Link to="/">Blogs</Link>
-                        <Link to="/new">Post New Blog</Link>
-                        <Link onClick={handleLogout} to="/">Logout</Link>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/">Music Blogs</Link>
-                        <Link to="/login">Login</Link> 
-                        <Link to="/signup">Sign Up</Link> 
-                        <Link to="/logout">Log Out</Link> 
+          <div className="logo">
+            <h1>Groovify</h1>
+          </div>
+          <div className="links"> 
+            {token ? (
+              <>
+                <Link to="/profile">{decoded.email}</Link>
+                <Link to="/">Blogs</Link>
+                <Link to="/new">Post New Blog</Link>
+                <Link onClick={handleLogout} to="/">Logout</Link>
+              </>
+            ) : (
+              <>
 
-                    </>
-                )}
-            </div> 
-        </div>
-    );
+<div className="logo">
+            <h1>Music App</h1>
+          </div>
+                <div className="links">
+                <Link to="/">Listen to Music</Link>
+                <Link to="/login">Login</Link> 
+                <Link to="/signup">Sign Up</Link> 
+                <Link to="/logout">Log Out</Link> 
+                </div>  
+              </>
+            )}
+          </div> 
+        </div> 
+      );
+      
 }
 
 export default Navbar;
