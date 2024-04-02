@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
+import { jwtDecode }  from "jwt-decode"; // Correct import statement for jwtDecode
 import "./navbar.css";
-import {  jwtDecode } from "jwt-decode"; // Correct import statement for jwtDecode
 
 function Navbar() {
     let token = localStorage.getItem("token");
@@ -14,22 +14,34 @@ function Navbar() {
         token = null;
     }
 
+    function handleLogout() {
+        if (localStorage.getItem("token")) {
+            if (window.confirm("Are you sure you want to Log Out?")) {
+                localStorage.removeItem("token");
+                alert("Logout");
+            } else {
+                return;
+            }
+        }
+    }
+
     return (
-        <div className="navbar"> {/* Remove dot from className */}
-            <div className="logo"> {/* Remove dot from className */}
-                <h1>MusicBlogApp</h1>
+        <div className="navbar">
+            <div className="logo">
+                <h1>Music Blog App</h1>
             </div>
-            <div className="links"> {/* Remove dot from className */}
-                {token ? ( // Use ternary operator for conditional rendering
+            <div className="links">
+                {token ? (
                     <>
+                        <Link to="/">Blogs</Link>
                         <Link to="/new">Post New Blog</Link>
-                        <Link to="/blogs">Blogs</Link> {/* Correct path to "Blogs" */}
-                        <Link to="/logout">Logout</Link> {/* Correct path to "Logout" */}
+                        <Link onClick={handleLogout} to="/">Logout</Link>
                     </>
                 ) : (
                     <>
+                        <Link to="/">Blogs</Link>
                         <Link to="/login">Login</Link> 
-                        <Link to="/register">Sign Up</Link> 
+                        <Link to="/signup">Sign Up</Link> 
                     </>
                 )}
             </div> 

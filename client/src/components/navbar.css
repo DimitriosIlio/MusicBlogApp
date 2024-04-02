@@ -1,28 +1,50 @@
 /* Navbar Styles */
 .navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo h1 {
-    font-size: 24px;
-  }
-  
-  .links {
-    display: flex;
-  }
-  
-  .links a {
-    text-decoration: none;
-    color: #fff;
-    margin-left: 20px;
-  }
-  
-  .links a:hover {
-    text-decoration: underline;
-  }
-  
+  background-color: #333;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
+}
+
+.logo h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  align-items: center; /* Vertically center links */
+}
+
+.links a {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 25px;
+  transition: color 0.3s ease; /* Smooth transition for link color */
+  font-weight: 500;
+}
+
+.links a:hover {
+  color: #ffc107; /* Change link color on hover */
+}
+
+/* Special style for the logout button */
+.links a.logout {
+  cursor: pointer; /* Change cursor to pointer on hover */
+  background-color: #dc3545; /* Red color for logout button */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px; /* Add letter spacing for emphasis */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.links a.logout:hover {
+  background-color: #c82333; /* Darker red color on hover */
+}
