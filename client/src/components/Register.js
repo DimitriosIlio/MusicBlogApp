@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import "./form.css";
+import React, { useState } from "react"; 
 import axios from "axios";
 
 function Register () {
@@ -13,10 +12,16 @@ function Register () {
             let user = { username, email, password };
             let res = await axios.post("http://localhost:8000/register", user);
             console.log(res.data);
-        } catch (error) {}
+        } catch (error) {
+            console.error(error);
+        }
     };
  
     return (
         <div className="form-container"> 
-        <h1>SignUp</h1>
-    )
+            <h1>SignUp</h1>
+        </div> 
+    );
+}
+
+export default Register;
