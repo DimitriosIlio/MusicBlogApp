@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 function Blogs() {
     const[blogs,setBlogs] = useState([]);
     const getAllBlogs = async () => {
-        let res = await axios.get("http://localhost:8000/blog");
+        let res = await axios.get("http://localhost:8000/blogs");
         console.log(res.data);
         setBlogs(res.data);
-    };
+    }; 
     useEffect(() => {
         getAllBlogs();
     }, []);

@@ -32,7 +32,7 @@ const createBlog = async (req, res) => {
         const data = {
             title: req.body.title, 
             imgURL:req.body.imgUrl, 
-            content: req.body.content
+            content: req.body.content,
             author: req.user.id,
         };
 
@@ -51,7 +51,7 @@ const updateBlog = async (req, res) => {
      const data = req.body;
      let updated = await Blog.updateOne({_id:id}, data);
      res.status(200).send({ msg: "updated successfully", status: true, updated  });
-     catch (error) {
+    }  catch (error) {
         res.status(500).send({ msg: "Internal server error", status: false });
 
      } 

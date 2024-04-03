@@ -3,6 +3,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("./models/userModel"); // Import the User model
+const db = require("./connection")
 
 const app = express();
 const port = 8000;
