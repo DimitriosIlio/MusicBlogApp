@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Login.css";
 import axios from "axios";
-import { jwtDecode }  from "jwt-decode";
-
-
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     let token;
@@ -18,7 +18,7 @@ function Login() {
             alert(res.data.token);
             token = res.data.token;
             localStorage.setItem("token", token);
-           
+            navigate("/");
         } catch (error) {
             console.error(error);
         }
